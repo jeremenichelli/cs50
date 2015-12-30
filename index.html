@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cs50 project | weather app</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="Weather app. Final project for cs50">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <form class="search-form" action="?">
+                <label for="search-input" class="search-label">Search</label>
+                <input type="text" id="search-input" placeholder="Search a city or place" autocomplete="off">
+                <a href="#" id="clear-search">Clear</a>
+                <div id="search-results-view"></div>
+            </form>
+        </div>
+    </header>
+
+    <section id="message-view" class="visible">
+        <div class="container">
+            <h1 class="message-title">To begin using this web app</h1>
+            <p class="mesage-body">Type a city name and tap a result to see the forecast</p>
+        </div>
+    </section>
+
+    <section id="weather-view"></section>
+
+    <!--  TEMPLATES  -->
+    <template id="search-results-template">
+        <ul class="search-results-list" mns-each-result="searchResults.list" mns-show="searchResults.list.length">
+            <li>
+                <a href="#" class="search-result-item"
+                   mns-data-lat="result.geometry.location.lat"
+                   mns-data-lng="result.geometry.location.lng"
+                   mns-text="result.formatted_address"></a>
+            </li>
+        </ul>
+        <ul class="no-results-msge" mns-hide="searchResults.list.length">
+            <li>
+                <p>No results for that name, try a different one</p>
+            </li>
+        </ul>
+    </template>
+
+    <template id="message-template">
+        <div class="container">
+            <h1 class="message-title"
+                mns-text="message.title"
+                mns-show="message.title"></h1>
+            <p class="mesage-body"
+               mns-text="message.body"
+               mns-show="message.body"></p>
+        </div>
+    </template>
+
+    <template id="weather-template">
+        <div class="container">
+            <div class="card">
+                <div class="currently">
+                    <img class="weather-currently-icon" mns-attr-src="weather.currently.icon"
+                         alt="" onload="this.style.opacity=1;">
+                    <h1 class="weather-place" mns-text="weather.place"></h1>
+                    <p class="weather-currently-temp">
+                        <span class="weather-currently-temp-value">
+                            <span class="c-temp" mns-round="weather.currently.temperature"></span><span class="f-temp" mns-fahr="weather.currently.temperature"></span></span>º
+                        <a href="#" mns-on-click="changeUnits" class="units-switch">
+                            <span class="c">C</span>/<span class="f">F</span>
+                        </a>
+                    </p>
+                    <p class="weather-currently-summary" mns-text="weather.currently.summary"></p>
+                    <p class="weather-currently-humidity">
+                        <span class="weather-currently-humidity-label">Humidity</span>
+                        <span class="weather-currently-humidity-value" mns-round="weather.currently.humidity"></span>%
+                    </p>
+                    <p class="weather-currently-precipitation">
+                        <span class="weather-currently-precipitation-label">Precipitation</span>
+                        <span class="weather-currently-precipitation-value"
+                              mns-round="weather.currently.precipProbability"></span>%
+                    </p>
+                </div>
+                <ul class="weather-daily-report" mns-each-day="weather.daily.data">
+                    <li>
+                        <h3 class="weather-daily-icon" mns-text="day.day"></h3>
+                        <img class="weather-daily-icon" mns-attr-src="day.icon"
+                             alt="" onload="this.style.opacity=1;">
+                        <p class="weather-daily-temp weather-daily-temp-min">
+                            <span class="weather-daily-temp-value">
+                                <span class="c-temp" mns-round="day.temperatureMin"></span><span class="f-temp" mns-fahr="day.temperatureMin"></span></span>º
+                        </p>
+                        <p class="weather-daily-temp weather-daily-temp-max">
+                            <span class="weather-daily-temp-value">
+                                <span class="c-temp" mns-round="day.temperatureMax"></span><span class="f-temp" mns-fahr="day.temperatureMax"></span></span>º
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjk--hOch2qYbW4eKgeY6jukYs-DE70VI"></script>
+    <script src="assets/scripts/main.js"></script>
+</body>
+</html>

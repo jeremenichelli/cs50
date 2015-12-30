@@ -1,0 +1,34 @@
+{
+  "name": "cs50",
+  "version": "1.0.0",
+  "description": "Weather app. Final project for cs50",
+  "main": "index.html",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremenichelli/cs50.git"
+  },
+  "keywords": [
+    "cs50",
+    "project",
+    "weather"
+  ],
+  "author": "Jeremias Menichelli",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jeremenichelli/cs50/issues"
+  },
+  "homepage": "https://github.com/jeremenichelli/cs50#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat-util": "^0.5.4",
+    "gulp-less": "^3.0.5",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-minify-css": "^1.2.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.1"
+  }
+}
